@@ -29,5 +29,21 @@ fun racineCarre(x: Double): Double {
           fin du pour sur les fraction
           renvoyer resultat
      */
-    return 0.0
+    var resultat = 0.0
+    while ((resultat + 1) * (resultat + 1) <= x) {
+        resultat++
+    }
+
+    val fractions = arrayOf(0.1, 0.01, 0.001, 0.0001)
+    for (fraction in fractions) {
+        var base = resultat
+        for (digit in 0..9) {
+            val test = base + fraction * digit
+            if (test * test <= x) {
+                resultat = test
+            }
+        }
+    }
+
+    return resultat
 }

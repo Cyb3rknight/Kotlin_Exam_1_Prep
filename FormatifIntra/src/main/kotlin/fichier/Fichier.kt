@@ -1,11 +1,14 @@
 package fichier
 
 import java.io.File
+import java.io.PrintWriter
 
 
 fun main() {
     // Tu peux tester tes fonctions en les appellants ici.
     println(lire())
+    val args = arrayOf("pipo.txt", "Contenu du fichier")
+    println(ecrire(args))
 }
 
 /**
@@ -31,6 +34,24 @@ fun lire() {
  * Si tout s'est bien passé, on retourne la valeur 1.
  */
 fun ecrire(args: Array<String>): Int {
-    var 
-    return 1
+    if(args.size != 2 )
+    {
+        return -1
+    }
+
+    val fileName = args[0]
+    val fileContent = args[1]
+
+    val file = File(fileName)
+    if (file.createNewFile()) {
+        val writer = PrintWriter(file)
+        writer.print(fileContent)
+        writer.close()
+        println("Fichier créé avec succès : $fileName")
+        println("Contenu du fichier : $fileContent")
+        return 1
+    } else {
+        println("Erreur lors de la création du fichier : $fileName")
+        return -1
+    }
 }

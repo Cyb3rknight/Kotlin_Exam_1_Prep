@@ -2,6 +2,7 @@ package algo
 
 fun main() {
     // Tu peux tester la fonction en l'appelant ici.
+    println(racineCarre(2.0))
 }
 
 /**

@@ -34,23 +34,30 @@ fun lire() {
  * Si tout s'est bien passé, on retourne la valeur 1.
  */
 fun ecrire(args: Array<String>): Int {
+    // Vérification si le nombre d'arguments est égal à 2
     if(args.size != 2 )
     {
+        // Si le nombre d'arguments est incorrect, retourner -1
         return -1
     }
 
+    // Récupération du nom de fichier et du contenu à partir des arguments
     val fileName = args[0]
     val fileContent = args[1]
 
+    // Création du fichier avec le nom spécifié
     val file = File(fileName)
     if (file.createNewFile()) {
+        // Écriture du contenu dans le fichier
         val writer = PrintWriter(file)
         writer.print(fileContent)
         writer.close()
         println("Fichier créé avec succès : $fileName")
         println("Contenu du fichier : $fileContent")
+        // Retourner 1 si tout s'est bien passé
         return 1
     } else {
+        // Erreur lors de la création du fichier
         println("Erreur lors de la création du fichier : $fileName")
         return -1
     }

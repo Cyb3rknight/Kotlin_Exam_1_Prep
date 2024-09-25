@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 
 fun main() {
-    // Tu peux tester la fonction en l'appelant ici.
+    // Appel de la fonction jsoup avec une liste de mots pour tester
     val mots = listOf("Comment", "est", "votre", "blanquette ?")
     println(jsoup(mots))
 }
@@ -41,16 +41,28 @@ fun main() {
  * </body>
  */
 fun jsoup(mots: List<String>): Document? {
+    // URL du document HTML à parser
     val url = "https://info.cegepmontpetit.ca/3N5-Prog3/intraA24-2.html"
+
+    // Connexion au document HTML et parsing
     val doc: Document = Jsoup.connect(url).get()
 
+    // Récupération de la balise body du document
     val body: Element = doc.body()
+
+    // Boucle sur la liste de mots pour ajouter chaque mot à la balise body
     for (string in mots) {
+        // Création d'un élément div
         val div: Element = doc.createElement("div")
+        // Ajout du texte du mot à l'élément div
         div.text(string)
+        // Ajout de l'élément div à la balise body
         body.appendChild(div)
     }
 
+    // Impression du code HTML modifié dans la console
     println(doc.html())
+
+    // Retour du document HTML modifié
     return doc
 }
